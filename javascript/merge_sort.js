@@ -1,10 +1,30 @@
-function merge(arr1, arr2) {
-  // type your code here
+function mergeSort(arr) {
+  if (arr.length <=1){
+    return arr
+  }
+  const middle = Math.floor((arr.length/2));
+  const left = arr.slice(0,middle)
+  const right = arr.slice(middle)
+
+  return merge(mergeSort(left), mergeSort(right));
 }
 
-function mergeSort(arr) {
-  // type your code here
+function merge(left, right){
+  const array = [];
+
+  while(left.length && right.length){
+    if(left[0] < right[0]){
+      array.push(left.shift())
+    } else{
+      array.push(right.shift())
+    }
+  }
+
+  return array.concat(left.slice()).concat(right.slice());
 }
+
+
+
 
 if (require.main === module) {
   // add your own tests in here
